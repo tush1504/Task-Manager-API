@@ -5,6 +5,15 @@ A simple and clean RESTful API to manage tasks, built with **Node.js**, **Expres
 
 ---
 
+##  API Documentation
+
+- Swagger Docs URL: [Click Here](https://task-manager-api-z1x4.onrender.com/api-docs/)
+- Format: YAML-based (`swagger.yaml`)
+- Tool: Swagger UI Express + YAML parser
+- Postman Documentation available :- [Click Here](https://documenter.getpostman.com/view/45879803/2sB34fn1Zh)
+
+---
+
 ##  Features
 
 -  Create, Read, Update, and Delete tasks
@@ -90,13 +99,6 @@ npm start
 
 ---
 
-##  Swagger API Documentation
-
-- URL: `http://localhost:3000/api-docs`
-- Format: YAML-based (`swagger.yaml`)
-- Tool: Swagger UI Express + YAML parser
-
----
 
 ##  API Endpoints
 
@@ -106,11 +108,11 @@ Base URL: `/api/v1/tasks`
 
 | Method | Endpoint           | Description             |
 |--------|--------------------|-------------------------|
-| GET    | `/all`             | Get all tasks           |
+| GET    | `/getall`          | Get all tasks           |
 | POST   | `/create`          | Create a new task       |
-| GET    | `/:id`             | Get a task by ID        |
-| PATCH  | `/:id`             | Update a task by ID     |
-| DELETE | `/:id`             | Delete a task by ID     |
+| GET    | `/get/:id`         | Get a task by ID        |
+| PATCH  | `/update/:id`      | Update a task by ID     |
+| DELETE | `/delete/:id`      | Delete a task by ID     |
 
 ---
 
