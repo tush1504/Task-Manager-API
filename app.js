@@ -10,6 +10,12 @@ const helmet = require("helmet")
 const YAML = require("yamljs")
 const swaggerUi=require('swagger-ui-express');
 
+
+// health for render
+app.get("/healthz" , (req,res) =>{
+  res.status(200).send("OK")
+})
+
 // middleware
 
 app.use(helmet())
