@@ -10,6 +10,10 @@ const TaskSchema = new mongoose.Schema({
         type:Boolean,
         default:false
     }
-})
+},{ 
+  timestamps: true, 
+  versionKey: false 
+}
+);
 
 module.exports = mongoose.model("Tasks",TaskSchema)

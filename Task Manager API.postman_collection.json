@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "fe78bba2-3daa-4903-b86d-53c97324bc6f",
+		"name": "Task Manager API",
+		"description": "This Postman collection provides a complete set of endpoints for managing tasks in a simple Task Manager REST API. Built with **Node.js**, **Express**, and **MongoDB**, it demonstrates CRUD operations following RESTful conventions.\n\n### Features\n\n- **Create a Task**\n    \n- **Get All Tasks**\n    \n- **Get a Single Task by ID**\n    \n- **Update a Task**\n    \n- **Delete a Task**\n    \n\n### Notes\n\n- All endpoints return JSON.\n    \n- Error responses follow a consistent format.\n    \n- Custom error handling is integrated.\n    \n- Swagger documentation available at `/api-docs`.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "45879803",
+		"_collection_link": "https://www.postman.com/tush1504/workspace/tush1504-projects/collection/45879803-fe78bba2-3daa-4903-b86d-53c97324bc6f?action=share&source=collection_link&creator=45879803"
+	},
+	"item": [
+		{
+			"name": "Get All Tasks",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{URL}}/tasks/all",
+				"description": "### Get Tasks\n\nThis endpoint retrieves a list of tasks from the server.\n\n- **Method**: `GET`\n    \n- **Endpoint**: `{{URL}}/tasks`\n    \n\n#### Expected Response\n\nUpon a successful request, the server responds with a `200 OK` status code and a JSON object containing the following fields:\n\n- **success** (boolean): Indicates whether the request was successful.\n    \n- **count** (integer): The total number of tasks retrieved.\n    \n- **data** (array): An array of task objects, each containing:\n    \n    - **_id** (string): The unique identifier for the task.\n        \n    - **name** (string): The name of the task.\n        \n    - **completed** (boolean): Indicates whether the task has been completed.\n        \n    - **__v** (integer): The version key for the task document.\n        \n\n#### Example Response\n\n``` json\n{\n  \"success\": true,\n  \"count\": 0,\n  \"data\": [\n    {\n      \"_id\": \"\",\n      \"name\": \"\",\n      \"completed\": true,\n      \"__v\": 0\n    }\n  ]\n}\n\n ```\n\nThis response structure allows clients to easily understand the status of the request and the details of the tasks available."
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URL}}/tasks/create",
+				"description": "### Endpoint: Create Task\n\nThis endpoint allows users to create a new task by sending a POST request to `{{URL}}/tasks`.\n\n#### Request\n\n- **Method**: POST\n    \n- **Content-Type**: application/json\n    \n\n##### Request Body\n\nThe request body must contain a JSON object with the following parameter:\n\n- **name** (string): The name of the task to be created. This parameter is required.\n    \n\n**Example Request Body**:\n\n``` json\n{\n  \"name\": \"Your Task Name Here\"\n}\n\n ```\n\n#### Response\n\nUpon successful creation of a task, the server will return a JSON response. However, in the last execution, a status code of **500** was returned, indicating an internal server error. The expected response structure is as follows:\n\n- **Status Code**: 200 (for successful requests)\n    \n- **Content-Type**: application/json\n    \n- {\"success\": true,\"count\": 0,\"data\": \\[ { \"_id\": \"unique_task_id\", \"name\": \"task_name\", \"completed\": false, \"__v\": 0 }\\]}\n    \n- **success** (boolean): Indicates whether the request was successful.\n    \n- **count** (integer): The number of tasks returned (should be 1 for successful creation).\n    \n- **data** (array): An array containing the created task object with the following properties:\n    \n    - **_id** (string): The unique identifier for the task.\n        \n    - **name** (string): The name of the created task.\n        \n    - **completed** (boolean): Indicates whether the task is completed.\n        \n    - **__v** (integer): Version key for the task document.\n        \n\n#### Notes\n\n- Ensure that the `name` parameter is provided and is a valid string to avoid server errors.\n    \n- The response structure may vary based on the success or failure of the request."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Task",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URL}}/tasks/get/6853e1d0de3f545f4c23321e",
+				"description": "### Endpoint: Retrieve Tasks\n\nThis endpoint allows you to retrieve a list of tasks from the server. It is a simple GET request that returns the current state of tasks, including their completion status and other relevant details.\n\n#### Request\n\n- **Method:** GET\n    \n- **URL:** `{{URL}}/tasks/`\n    \n\n#### Response\n\nOn a successful request, the server will respond with a JSON object containing the following structure:\n\n``` json\n{\n  \"success\": true,\n  \"count\": 0,\n  \"data\": [\n    {\n      \"_id\": \"\",\n      \"name\": \"\",\n      \"completed\": true,\n      \"__v\": 0\n    }\n  ]\n}\n\n ```\n\n- **success**: A boolean indicating whether the request was successful.\n    \n- **count**: An integer representing the number of tasks retrieved.\n    \n- **data**: An array of task objects, where each object contains:\n    \n    - **_id**: The unique identifier for the task.\n        \n    - **name**: The name or title of the task.\n        \n    - **completed**: A boolean indicating if the task has been completed.\n        \n    - **__v**: A version key used for internal tracking.\n        \n\n#### Notes\n\n- The `count` field will reflect the number of tasks available in the database at the time of the request.\n    \n- If there are no tasks, `count` will be `0`, and the `data` array will be empty.\n    \n- This endpoint is useful for displaying all tasks to users, enabling them to see their current tasks and their statuses."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Task",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"completed\":\"true\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URL}}/tasks/update/6853e1d0de3f545f4c23321eefjn",
+				"description": "## PATCH /tasks/{taskId}\n\nThis endpoint updates the completion status of a specific task identified by its unique `taskId`.\n\n### Request Parameters\n\n- **taskId** (path parameter): A unique identifier for the task you want to update. In this example, the task ID is `6853e1d0de3f545f4c23321eefjn`.\n    \n\n### Request Body\n\nThe request body must be in JSON format and should include the following parameter:\n\n- **completed** (string): Indicates whether the task is completed. The value should be `\"true\"` or `\"false\"`.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"completed\": \"true\"\n}\n\n ```\n\n### Expected Response\n\nUpon a successful update, the API will return a response with the following structure:\n\n- **success** (boolean): Indicates if the operation was successful.\n    \n- **count** (integer): Represents the number of tasks affected by the operation.\n    \n- **data** (array): An array containing the updated task details, including:\n    \n    - **_id** (string): The unique identifier of the task.\n        \n    - **name** (string): The name of the task.\n        \n    - **completed** (boolean): The updated completion status of the task.\n        \n    - **__v** (integer): Version key for the task document.\n        \n\n**Example Response:**\n\n``` json\n{\n  \"success\": true,\n  \"count\": 0,\n  \"data\": [\n    {\n      \"_id\": \"\",\n      \"name\": \"\",\n      \"completed\": true,\n      \"__v\": 0\n    }\n  ]\n}\n\n ```\n\n### Notes\n\n- A successful request will return a `200 OK` status code.\n    \n- Ensure that the `taskId` is valid and corresponds to an existing task in the database."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "{{URL}}/tasks/delete/6853e1d0de3f545f4c23321e",
+				"description": "## DELETE Task Endpoint\n\nThis endpoint allows you to delete a specific task identified by its unique ID.\n\n### Request\n\n- **Method**: DELETE\n    \n- **URL**: `{{URL}}/tasks/{taskId}`\n    \n\n#### Path Parameters\n\n- `taskId` (string): The unique identifier of the task you wish to delete. In this example, the task ID is `6853e1d0de3f545f4c23321e`.\n    \n\n### Response\n\nUpon a successful deletion, the API will return a response with the following structure:\n\n- **Status Code**: 200 OK\n    \n- { \"success\": true, \"count\": 0, \"data\": \\[ { \"_id\": \"\", \"name\": \"\", \"completed\": true, \"__v\": 0 } \\]}\n    \n\n#### Response Fields\n\n- `success` (boolean): Indicates whether the deletion was successful.\n    \n- `count` (integer): The number of tasks affected by the operation, which will be `0` since the task has been deleted.\n    \n- `data` (array): An array containing details of the deleted task, which may include fields such as `_id`, `name`, and `completed`.\n    \n\n### Notes\n\n- Ensure that the task ID provided in the request is valid and corresponds to an existing task in the system.\n    \n- Deleting a task is irreversible; once deleted, the task cannot be recovered."
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:3000/api/v1",
+			"type": "default"
+		}
+	]
+}
