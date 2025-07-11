@@ -6,7 +6,10 @@ info:
 
 servers:
   - url: https://task-manager-api-z1x4.onrender.com/api/v1/tasks
+    description: Production server (Render)
   - url: http://localhost:3000/api/v1/tasks
+    description: Local development server
+
 
 paths:
   /getall:
